@@ -1,42 +1,7 @@
 # GAN TTS
-we propose a framework for Test-to-speech (TTS) using the Generative adversarial networks (GANs) for the Low Resource Indian Languages. Deep neural networks are emerging as powerful techniques for the synthetic production of speech, however, the quality is less natural as compared to an original speech waveform. Over- smoothing is one of the major problems which degrades the quality of speech synthesizers. We introduced the GANs, in this research paper for the low resource Indian languages. GANs comprises of two neural networks, a discriminator to distinguish natural and generated samples, and a generator to deceive the discriminator. This work is focused to design the discriminator which is trained to identify the difference between the original speech and synthesized speech parameters, and generator models the acoustic parameters from the given speech waveform. It results in reducing the distribution of the difference between the original speech and synthesized speech waveforms for the Text-to-Speech (TTS) system for the low resource Indian languages such as Hindi. The presented novel method efficiently builds the synthetic quality of speech for the low resource Indian language.
+we propose a framework for Test-to-speech (TTS) using the Generative adversarial networks (GANs) for the Low Resource Indian Languages. Deep neural networks are emerging as powerful techniques for the synthetic production of speech, however, the quality is less natural as compared to an original speech waveform. Over- smoothing is one of the major problems which degrades the quality of speech synthesizers. We introduced the GANs, in this research paper for the low resource Indian languages. GANs comprises of two neural networks, a discriminator to distinguish natural and generated samples, and a generator to deceive the discriminator. This work is focused to design the discriminator which is trained to identify the difference between the original speech and synthesized speech parameters, and generator models the acoustic parameters from the given speech waveform. It results in reducing the distribution of the difference between the original speech and synthesized speech waveforms for the Text-to-Speech (TTS) system for the low resource Indian languages such as Hindi. The presented novel method efficiently builds the synthetic quality of speech for the low resource Indian language
 
 
-
-
-
-[![Build Status](https://travis-ci.org/r9y9/gantts.svg?branch=master)](https://travis-ci.org/r9y9/gantts)
-
-PyTorch implementation of Generative adversarial Networks (GAN) based text-to-speech (TTS) and voice conversion (VC).
-
-1. [Saito, Yuki, Shinnosuke Takamichi, and Hiroshi Saruwatari. "Statistical Parametric Speech Synthesis Incorporating Generative Adversarial Networks." IEEE/ACM Transactions on Audio, Speech, and Language Processing (2017).](http://ieeexplore.ieee.org/abstract/document/8063435/)
-2. [Shan Yang, Lei Xie, Xiao Chen, Xiaoyan Lou, Xuan Zhu, Dongyan Huang, Haizhou Li, "
-Statistical Parametric Speech Synthesis Using Generative Adversarial Networks Under A Multi-task Learning Framework", 	arXiv:1707.01670, Jul 2017.](https://arxiv.org/abs/1707.01670)
-
-## Generated audio samples
-
-Audio samples are available in the Jupyter notebooks at the link below:
-
-- [Voice conversion (en, MLP)](http://nbviewer.jupyter.org/github/r9y9/gantts/blob/master/notebooks/Test%20VC.ipynb)
-- [Voice conversion (en, RNN)](http://nbviewer.jupyter.org/github/r9y9/gantts/blob/master/notebooks/Test%20RNN%20VC.ipynb)
-- [Text-to-speech synthesis (en, MLP)](http://nbviewer.jupyter.org/github/r9y9/gantts/blob/master/notebooks/Test%20TTS.ipynb)
-- [Text-to-speech synthesis (ja, MLP)](http://nbviewer.jupyter.org/gist/r9y9/185a56417cee27d9f785b8caf1c9f5ec)
-
-
-## Notes on hyper parameters
-
-- `adversarial_streams`, which represents streams (mgc, lf0, vuv, bap) to be used to compute adversarial loss, is a very speech quality sensitive parameter. Computing adversarial loss on mgc features (except for first few dimensions) seems to be working good.
-- If `mask_nth_mgc_for_adv_loss` > 0, first `mask_nth_mgc_for_adv_loss` dimension for mgc will be ignored for computing adversarial loss. As described in [saito2017asja](http://sython.org/papers/ASJ/saito2017asja.pdf), I confirmed that using 0-th (and 1-th) mgc for computing adversarial loss affects speech quality. From my experience, `mask_nth_mgc_for_adv_loss` = 1 for mgc order 25, `mask_nth_mgc_for_adv_loss` = 2 for mgc order 59 are working to me.
-- F0 extracted by WORLD will be spline interpolated. Set `f0_interpolation_kind` to "slinear" if you want frist-order spline interpolation, which is same as Merlin's default.
-- Set `use_harvest` to True if you want to use Harvest F0 estimation algorithm. If False, Dio and StoneMask are used to estimate/refine F0.
-- If you see `cuda runtime error (2) : out of memory`, try smaller batch size. https://github.com/r9y9/gantts/issues/3
-
-### Notes on [2]
-
-Though I haven't got improvements over Saito's approach [1] yet, but the GAN-based models described in [2] should be achieved by the following configurations:
-
-- Set `generator_add_noise` to True. This will enable generator to use Gaussian noise as input. Linguistic features are concatenated with the noise vector.
-- Set `discriminator_linguistic_condition` to True. The discriminator uses linguistic features as condition.
 
 ## Requirements
 
@@ -50,10 +15,6 @@ Though I haven't got improvements over Saito's approach [1] yet, but the GAN-bas
 
 Please install PyTorch, TensorFlow and SRU (if needed) first. Once you have those, then
 
-```
-git clone --recursive https://github.com/r9y9/gantts & cd gantts
-pip install -e ".[train]"
-```
 
 should install all other dependencies.
 
@@ -70,7 +31,6 @@ should install all other dependencies.
 
 Feature extraction scripts are written for CMU ARCTIC dataset, but can be easily adapted for other datasets.
 
-## Run demos
 
 ### Voice conversion (en)
 
@@ -139,12 +99,4 @@ tensorboard --logdir=log
 - https://www.slideshare.net/ShinnosukeTakamichi/dnnantispoofing
 - https://www.slideshare.net/YukiSaito8/Saito2017icassp
 
-## Notice
 
-The repository doesn't try to reproduce same results reported in their papers because 1) data is not publically available and 2). hyper parameters are highly depends on data. Instead, I tried same ideas on different data with different hyper parameters.
-
-You can also install the development version of CuPy from a cloned Git repository:
-
-$ git clone https://github.com/cupy/cupy.git
-$ cd cupy
-$ pip install .
