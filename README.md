@@ -29,39 +29,6 @@ should install all other dependencies.
 - **evaluation_vc.py**: Evaluation script for VC.
 - **evaluation_tts.py**: Evaluation script for TTS.
 
-Feature extraction scripts are written for CMU ARCTIC dataset, but can be easily adapted for other datasets.
-
-
-### Voice conversion (en)
-
-`vc_demo.sh` is a `clb` to `clt` voice conversion demo script. Before running the script, please download wav files for `clb` and `slt` from [CMU ARCTIC](http://festvox.org/cmu_arctic/) and check that you have all data in a directory as follows:
-
-```
-> tree ~/data/cmu_arctic/ -d -L 1
-/home/ryuichi/data/cmu_arctic/
-├── cmu_us_awb_arctic
-├── cmu_us_bdl_arctic
-├── cmu_us_clb_arctic
-├── cmu_us_jmk_arctic
-├── cmu_us_ksp_arctic
-├── cmu_us_rms_arctic
-└── cmu_us_slt_arctic
-```
-
-Once you have downloaded datasets, then:
-
-```
-./vc_demo.sh ${experimental_id} ${your_cmu_arctic_data_root}
-```
-
-e.g.,
-
-```
- ./vc_demo.sh vc_gan_test ~/data/cmu_arctic/
-```
-
-Model checkpoints will be saved at `./checkpoints/${experimental_id}` and audio samples
-are saved at `./generated/${experimental_id}`.
 
 ### Text-to-speech synthesis (en)
 
@@ -81,15 +48,7 @@ This will download `slt_arctic_full_data` used in Merlin's demo, perform feature
 Model checkpoints will be saved at `./checkpoints/${experimental_id}` and audio samples
 are saved at `./generated/${experimental_id}`.
 
-## Hyper paramters
 
-See ``hparams.py``.
-
-## Monitoring training progress
-
-```
-tensorboard --logdir=log
-```
 
 ## References
 
