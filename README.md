@@ -1,4 +1,9 @@
 # GAN TTS
+we propose a framework for Test-to-speech (TTS) using the Generative adversarial networks (GANs) for the Low Resource Indian Languages. Deep neural networks are emerging as powerful techniques for the synthetic production of speech, however, the quality is less natural as compared to an original speech waveform. Over- smoothing is one of the major problems which degrades the quality of speech synthesizers. We introduced the GANs, in this research paper for the low resource Indian languages. GANs comprises of two neural networks, a discriminator to distinguish natural and generated samples, and a generator to deceive the discriminator. This work is focused to design the discriminator which is trained to identify the difference between the original speech and synthesized speech parameters, and generator models the acoustic parameters from the given speech waveform. It results in reducing the distribution of the difference between the original speech and synthesized speech waveforms for the Text-to-Speech (TTS) system for the low resource Indian languages such as Hindi. The presented novel method efficiently builds the synthetic quality of speech for the low resource Indian language.
+
+
+
+
 
 [![Build Status](https://travis-ci.org/r9y9/gantts.svg?branch=master)](https://travis-ci.org/r9y9/gantts)
 
