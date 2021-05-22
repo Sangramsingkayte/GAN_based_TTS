@@ -4,7 +4,7 @@
 
 Audio samples are available in the Jupyter notebooks at the link below:
 
-- [Text-to-speech synthesis (en, MLP)](http://nbviewer.jupyter.org/github/r9y9/gantts/blob/master/notebooks/Test%20TTS.ipynb)
+- [Text-to-speech synthesis](http://nbviewer.jupyter.org/github/r9y9/gantts/blob/master/notebooks/Test%20TTS.ipynb)
 
 
 ## Notes on hyper parameters
